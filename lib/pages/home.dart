@@ -8,30 +8,31 @@ class HomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(
-            appBar: AppBar(
-              title: Text('Startseite'),
-            ),
-            body: FutureBuilder(builder: (BuildContext context,
-                AsyncSnapshot<SharedPreferences> snapshot) {
-              if (snapshot.hasData) {
-                final prefs = snapshot.data;
-                String selectedSport = prefs.getString('selectedSport') ?? 'Errroorr';
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Startseite'),
+        ),
+        body: FutureBuilder(
+          builder: (BuildContext context,
+              AsyncSnapshot<SharedPreferences> snapshot) {
+            if (snapshot.hasData) {
+              final prefs = snapshot.data;
+              String selectedSport =
+                  prefs.getString('selectedSport') ?? 'Errroorr';
 
-                return Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Column(
-                    children: [
-                      Text('ausgewählter Sport: ' + selectedSport),
-                    ],
-                  ),
-                );
-              }
-              return Text('Gib et nicht');
-            })
-
-
-        ));
+              return Padding(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  children: [
+                    Text('ausgewählter Sport: ' + selectedSport),
+                  ],
+                ),
+              );
+            }
+            return Text('Gib et nicht');
+          },
+        ),
+      ),
+    );
   }
 }
-
